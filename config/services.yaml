@@ -29,3 +29,11 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Up\Client:
+        arguments:
+            $httpClient: '@up'
+
+    App\EventSubscriber\WebhookAuthenticationEventSubscriber:
+        arguments:
+            $secretKey: '%env(UP_WEBHOOK_SECRET_KEY)%'
